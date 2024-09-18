@@ -1,15 +1,18 @@
 import { Injectable } from "@nestjs/common";
+import { PrismaService } from "src/prisma/prisma.service";
 
 @Injectable()
 export class jugadoresService{
-    getJugadores(){
-        return [
-            {id:1, nombre:'jugador1'},
-            {id:2, nombre:'jugador2'},
-            {id:3, nombre:'jugador3'}
-        ]
+    constructor(private prisma : PrismaService){
+
     }
     getJugador(id:number){
+        this.prisma.jugadores.findMany()
+       
+    }
+    
+    async getJugadores(){
+        return await this.prisma.jugadores.findMany()
        
     }
 
