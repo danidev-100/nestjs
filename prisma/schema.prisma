@@ -5,7 +5,7 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["driverAdapters"]
 }
 
@@ -14,13 +14,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Usuarios {
+  id       Int    @id @default(autoincrement())
+  nombre   String
+  apellido String
+  password String
 
-model Jugadores{
-  id           Int    @id @default(autoincrement())
-  nombre       String
-  apellido      String
-  edad         Int
-  altura        Float
-  peso         Float
-  posicion     String
+  @@map("usuarios")
+}
+
+model Fotocopias {
+  id            Int      @id @default(autoincrement())
+  color         Int
+  colorDobleFas Int
+  negro         Int
+  negroDobleFas Int
+  createAd      DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("fotocopias")
 }
